@@ -2,7 +2,7 @@
 name: excalidraw-diagram
 description: Generate Excalidraw diagrams from text content. Supports three output modes - Obsidian (.md), Standard (.excalidraw), and Animated (.excalidraw with animation order). Triggers on "Excalidraw", "画图", "流程图", "思维导图", "可视化", "diagram", "标准Excalidraw", "standard excalidraw", "Excalidraw动画", "动画图", "animate".
 metadata:
-  version: 1.2.0
+  version: 1.2.1
 ---
 
 # Excalidraw Diagram Generator
@@ -137,25 +137,62 @@ tags: [excalidraw]
 - **所有文本元素必须使用** `fontFamily: 5`（Excalifont 手写字体）
 - **文本中的双引号替换规则**：`"` 替换为 `『』`
 - **文本中的圆括号替换规则**：`()` 替换为 `「」`
-- **字体大小规则**：
-  - 标题：24-28px
+- **字体大小规则**（硬性下限，低于此值在正常缩放下不可读）：
+  - 标题：20-28px（最小 20px）
   - 副标题：18-20px
-  - 正文/说明：14-16px
+  - 正文/标签：16-18px（最小 16px）
+  - 次要注释：14px（仅限不重要的辅助说明，慎用）
+  - **绝对禁止低于 14px**
 - **行高**：所有文本使用 `lineHeight: 1.25`
+- **文字居中估算**：独立文本元素没有自动居中，需手动计算 x 坐标：
+  - 估算文字宽度：`estimatedWidth = text.length * fontSize * 0.5`（CJK 字符用 `* 1.0`）
+  - 居中公式：`x = centerX - estimatedWidth / 2`
+  - 示例：文字 "Hello"（5字符, fontSize 20）居中于 x=300 → `estimatedWidth = 5 * 20 * 0.5 = 50` → `x = 300 - 25 = 275`
 
 ### Layout & Design
 - **画布范围**：建议所有元素在 0-1200 x 0-800 区域内
-- **元素间距**：确保元素间距适当，整体布局美观
+- **最小形状尺寸**：带文字的矩形/椭圆不小于 120x60px
+- **元素间距**：最小 20-30px 间距，防止重叠
 - **层次清晰**：使用不同颜色和形状区分不同层级的信息
 - **图形元素**：适当使用矩形框、圆形、箭头等元素来组织信息
 - **禁止 Emoji**：不要在图表文本中使用任何 Emoji 符号，如需视觉标记请使用简单图形（圆形、方形、箭头）或颜色区分
 
 ### Color Palette
-- **标题颜色**：`#1e40af`（深蓝）
-- **副标题/连接线**：`#3b82f6`（亮蓝）
-- **正文文字**：`#374151`（灰色）
-- **强调/重点**：`#f59e0b`（金色）
-- **其他配色**：建议使用和谐的配色方案，避免过多颜色
+
+**文字颜色（strokeColor for text）：**
+
+| 用途 | 色值 | 说明 |
+|------|------|------|
+| 标题 | `#1e40af` | 深蓝 |
+| 副标题/连接线 | `#3b82f6` | 亮蓝 |
+| 正文文字 | `#374151` | 深灰（白底最浅不低于 `#757575`） |
+| 强调/重点 | `#f59e0b` | 金色 |
+
+**形状填充色（backgroundColor, fillStyle: "solid"）：**
+
+| 色值 | 语义 | 适用场景 |
+|------|------|---------|
+| `#a5d8ff` | 浅蓝 | 输入、数据源、主要节点 |
+| `#b2f2bb` | 浅绿 | 成功、输出、已完成 |
+| `#ffd8a8` | 浅橙 | 警告、待处理、外部依赖 |
+| `#d0bfff` | 浅紫 | 处理中、中间件、特殊项 |
+| `#ffc9c9` | 浅红 | 错误、关键、告警 |
+| `#fff3bf` | 浅黄 | 备注、决策、规划 |
+| `#c3fae8` | 浅青 | 存储、数据、缓存 |
+| `#eebefa` | 浅粉 | 分析、指标、统计 |
+
+**区域背景色（大矩形 + opacity: 30，用于分层图表）：**
+
+| 色值 | 语义 |
+|------|------|
+| `#dbe4ff` | 前端/UI 层 |
+| `#e5dbff` | 逻辑/处理层 |
+| `#d3f9d8` | 数据/工具层 |
+
+**对比度规则：**
+- 白底上文字最浅不低于 `#757575`，否则不可读
+- 浅色填充上用深色变体文字（如浅绿底用 `#15803d`，不用 `#22c55e`）
+- 避免浅灰色文字（`#b0b0b0`、`#999`）出现在白底上
 
 参考：[references/excalidraw-schema.md](references/excalidraw-schema.md)
 
@@ -187,7 +224,7 @@ tags: [excalidraw]
 
 ## Element Template
 
-Each element requires these fields (do NOT add extra fields like `frameId`, `index`, `versionNonce`, `strokeStyle`, `rawText` -- they cause "invalid file" errors on excalidraw.com v0.17.0+):
+Each element requires these fields (do NOT add extra fields like `frameId`, `index`, `versionNonce`, `rawText` -- they may cause issues on excalidraw.com. `boundElements` must be `null` not `[]`, `updated` must be `1` not timestamps):
 
 ```json
 {
@@ -200,6 +237,7 @@ Each element requires these fields (do NOT add extra fields like `frameId`, `ind
   "backgroundColor": "transparent",
   "fillStyle": "solid",
   "strokeWidth": 2,
+  "strokeStyle": "solid",
   "roughness": 1,
   "opacity": 100,
   "groupIds": [],
@@ -213,6 +251,8 @@ Each element requires these fields (do NOT add extra fields like `frameId`, `ind
   "locked": false
 }
 ```
+
+`strokeStyle` values: `"solid"`（实线，默认）| `"dashed"`（虚线）| `"dotted"`（点线）。虚线适合表示可选路径、异步流、弱关联等。
 
 Text elements add:
 ```json
@@ -262,7 +302,7 @@ See [references/excalidraw-schema.md](references/excalidraw-schema.md) for all e
 
 ### Required Fields for All Elements
 
-**IMPORTANT**: Do NOT include `frameId`, `index`, `versionNonce`, `strokeStyle`, or `rawText` fields. These cause "Error: invalid file" on excalidraw.com v0.17.0+. Use `boundElements: null` (not `[]`), and `updated: 1` (not timestamps).
+**IMPORTANT**: Do NOT include `frameId`, `index`, `versionNonce`, or `rawText` fields. Use `boundElements: null` (not `[]`), and `updated: 1` (not timestamps).
 
 ```json
 {
@@ -275,6 +315,7 @@ See [references/excalidraw-schema.md](references/excalidraw-schema.md) for all e
   "backgroundColor": "transparent|#color-hex",
   "fillStyle": "solid",
   "strokeWidth": 2,
+  "strokeStyle": "solid|dashed|dotted",
   "roughness": 1,
   "opacity": 100,
   "groupIds": [],
@@ -317,6 +358,16 @@ See [references/excalidraw-schema.md](references/excalidraw-schema.md) for all e
 ```json
 "files": {}
 ```
+
+## Common Mistakes to Avoid
+
+- **文字偏移** — 独立 text 元素的 `x` 是左边缘，不是中心。必须用居中公式手动计算，否则文字会偏到一边
+- **元素重叠** — y 坐标相近的元素容易堆叠。放置新元素前检查与周围元素是否有至少 20px 间距
+- **画布留白不足** — 内容不要贴着画布边缘。在四周留 50-80px 的 padding
+- **标题没有居中于图表** — 标题应居中于下方图表的整体宽度，不是固定在 x=0
+- **箭头标签溢出** — 长文字标签（如 "ATP + NADPH"）会超出短箭头。保持标签简短或加大箭头长度
+- **对比度不够** — 浅色文字在白底上几乎不可见。文字颜色不低于 `#757575`，有色文字用深色变体
+- **字号太小** — 低于 14px 在正常缩放下不可读，正文最小 16px
 
 ## Implementation Notes
 
