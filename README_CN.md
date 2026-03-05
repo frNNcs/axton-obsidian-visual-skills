@@ -1,15 +1,17 @@
-# Obsidian 可视化 Skills 套装
+# Obsidian Visual Skills Pack
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Status: Experimental](https://img.shields.io/badge/Status-Experimental-orange.svg)](#状态)
+[![Status: Experimental](https://img.shields.io/badge/Status-Experimental-orange.svg)](#status)
 
 **[English](README.md)**
 
-让 Claude Code 在 Obsidian 里生成 Canvas / Excalidraw / Mermaid 的可视化三件套。
+> **Note:** This file was originally the Chinese documentation and has been translated to English.
 
-> **Next Step:** 想把 Skill 从 demo 变资产？看 [Agent Skills 资源库](https://www.axtonliu.ai/agent-skills)（含讲义/PDF/诊断）
+Visual Skills Pack for Obsidian: generate Canvas, Excalidraw, and Mermaid diagrams from text with Claude Code.
 
-## 效果展示
+> **Next Step:** Want to turn Skills from demo to asset? Check out [Agent Skills Resource Library](https://www.axtonliu.ai/agent-skills) (includes slides, PDF, diagnostics)
+
+## Demo
 
 <table>
 <tr>
@@ -23,243 +25,244 @@
 <td><img src="assets/canvas-demo.png" width="280" alt="Canvas Demo"></td>
 </tr>
 <tr>
-<td align="center"><em>手绘风格</em></td>
-<td align="center"><em>层级流程图</em></td>
-<td align="center"><em>彩色卡片布局</em></td>
+<td align="center"><em>Hand-drawn style</em></td>
+<td align="center"><em>Hierarchical flowchart</em></td>
+<td align="center"><em>Colorful card layout</em></td>
 </tr>
 </table>
 
-### 视频演示
+### Video Demo
 
-[![观看演示](https://img.youtube.com/vi/TUJ_3G1cylc/maxresdefault.jpg)](https://youtu.be/TUJ_3G1cylc)
+[![Watch the demo](https://img.youtube.com/vi/TUJ_3G1cylc/maxresdefault.jpg)](https://youtu.be/TUJ_3G1cylc)
 
-## 状态
+## Status
 
-> **状态：实验性（Experimental）**
+> **Status: Experimental**
 >
-> - 这是公开原型，能跑通我的演示，但尚未覆盖所有输入规模与边界情况。
-> - 输出质量会受模型版本、输入结构影响，结果可能波动。
-> - 我的主要精力在于演示工具与系统的协作关系，而非代码维护本身。
-> - 如遇到问题，请提交可复现案例（输入 + 输出文件 + 操作步骤）。
+> - This is a public prototype that works for my demos, but does not yet cover all input scales and edge cases.
+> - Output quality varies based on model version and input structure; results may fluctuate.
+> - My primary focus is demonstrating how tools and systems work together, not maintaining this codebase.
+> - If you encounter issues, please submit a reproducible case (input + output file + steps to reproduce).
 
-## 什么是 Skills?
+## What Are Skills?
 
-Skills 是 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 的提示词扩展，赋予 Claude 专业化能力。与需要复杂配置的 MCP 服务器不同，Skills 只是简单的 Markdown 文件，Claude 会按需加载。
+Skills are prompt-based extensions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) that give Claude specialized capabilities. Unlike MCP servers that require complex setup, skills are simple markdown files that Claude loads on demand.
 
-## 包含的 Skills
+## Included Skills
 
-### 1. Excalidraw 图表生成器
+### 1. Excalidraw Diagram Generator
 
-生成手绘风格图表，支持三种输出模式：
+Generate hand-drawn style diagrams with three output modes:
 
-| 模式 | 输出 | 用途 |
-|------|------|------|
-| **Obsidian**（默认） | `.md` | 在 Obsidian 中直接打开 |
-| **标准** | `.excalidraw` | 在 excalidraw.com 打开/编辑/分享 |
-| **动画** | `.excalidraw` | 用 [excalidraw-animate](https://dai-shi.github.io/excalidraw-animate/) 生成动画 |
+| Mode | Output | Use Case |
+|------|--------|----------|
+| **Obsidian** (default) | `.md` | Open directly in Obsidian |
+| **Standard** | `.excalidraw` | Open/edit/share on excalidraw.com |
+| **Animated** | `.excalidraw` | Generate animations with [excalidraw-animate](https://dai-shi.github.io/excalidraw-animate/) |
 
-**支持的图表类型：**
+**Supported Diagram Types:**
 
-| 类型 | 适用场景 |
+| Type | Use Case |
 |------|---------|
-| **流程图** | 步骤说明、工作流程、任务执行顺序 |
-| **思维导图** | 概念发散、主题分类、灵感捕捉 |
-| **层级图** | 组织结构、内容分级、系统拆解 |
-| **关系图** | 要素之间的影响、依赖、互动 |
-| **对比图** | 两种以上方案或观点的对照分析 |
-| **时间线图** | 事件发展、项目进度、模型演化 |
-| **矩阵图** | 双维度分类、任务优先级、定位 |
-| **自由布局** | 内容零散、灵感记录、初步信息收集 |
+| **Flowchart** | Step-by-step instructions, workflows, task execution sequences |
+| **Mind Map** | Concept expansion, topic categorization, brainstorming |
+| **Hierarchy** | Org charts, content levels, system decomposition |
+| **Relationship** | Dependencies, influences, interactions between elements |
+| **Comparison** | Side-by-side analysis of approaches or options |
+| **Timeline** | Event progression, project milestones, evolution |
+| **Matrix** | 2D categorization, priority grids, positioning |
+| **Freeform** | Scattered ideas, initial exploration, free-form notes |
 
-**核心特性：**
-- 三种输出模式适应不同场景
-- 手绘美学风格，使用 Excalifont（fontFamily: 5）
-- 完美支持中文，正确处理特殊字符
-- 动画支持，可自定义元素出现顺序
+**Key Features:**
+- Three output modes for different use cases
+- Hand-drawn aesthetic with Excalifont (fontFamily: 5)
+- Full Chinese text support with proper character handling
+- Animation support with customizable element order
 
-**触发词：**
-- Obsidian：`Excalidraw`、`画图`、`流程图`、`思维导图`
-- 标准：`标准Excalidraw`、`standard excalidraw`
-- 动画：`Excalidraw动画`、`动画图`、`animate`
+**Trigger words:**
+- Obsidian: `Excalidraw`, `draw diagram`, `flowchart`, `mind map`
+- Standard: `standard Excalidraw`, `standard excalidraw`
+- Animated: `Excalidraw animation`, `animated diagram`, `animate`
 
-### 2. Mermaid 可视化器
+### 2. Mermaid Visualizer
 
-将文本内容转换为专业的 Mermaid 图表，适用于演示和文档。内置语法错误预防机制，避免常见陷阱。
+Transform text content into professional Mermaid diagrams optimized for presentations and documentation. Includes built-in syntax error prevention for common pitfalls.
 
-**支持的图表类型：**
-- **流程图** (graph TB/LR) - 工作流、决策树、AI Agent 架构
-- **循环图** - 迭代过程、反馈循环、持续改进
-- **对比图** - 前后对比、A vs B 分析、传统 vs 现代
-- **思维导图** - 层级概念、知识组织
-- **时序图** - 组件交互、API 调用、消息流
-- **状态图** - 系统状态、状态转换、生命周期
+**Supported Diagram Types:**
+- **Process Flow** (graph TB/LR) - Workflows, decision trees, AI agent architectures
+- **Circular Flow** - Cyclic processes, feedback loops, continuous improvement
+- **Comparison Diagram** - Before/after, A vs B analysis, traditional vs modern
+- **Mindmap** - Hierarchical concepts, knowledge organization
+- **Sequence Diagram** - Component interactions, API calls, message flows
+- **State Diagram** - System states, status transitions, lifecycle stages
 
-**核心特性：**
-- 内置语法错误预防（列表冲突、子图命名、特殊字符）
-- 可配置布局：垂直/水平、简洁/标准/详细
-- 语义化配色方案
-- 兼容 Obsidian、GitHub 等 Mermaid 渲染器
+**Key Features:**
+- Built-in syntax error prevention (list conflicts, subgraph naming, special characters)
+- Configurable layouts: vertical/horizontal, simple/standard/detailed
+- Professional color schemes with semantic meaning
+- Compatible with Obsidian, GitHub, and other Mermaid renderers
 
-**触发词：** `Mermaid`、`可视化`、`流程图`、`时序图`、`visualize`
+**Trigger words:** `Mermaid`, `visualize`, `flowchart`, `sequence diagram`, `visualization`
 
-### 3. Obsidian Canvas 创建器
+### 3. Obsidian Canvas Creator
 
-创建交互式 Obsidian Canvas（`.canvas`）文件，支持思维导图和自由布局。输出有效的 JSON Canvas 格式，可直接在 Obsidian 中打开。
+Create interactive Obsidian Canvas (`.canvas`) files with MindMap or freeform layouts. Outputs valid JSON Canvas format that opens directly in Obsidian.
 
-**布局模式：**
+**Layout Modes:**
 
-| 模式 | 结构 | 适用场景 |
-|------|------|---------|
-| **思维导图** | 从中心向外的放射状层级 | 头脑风暴、主题探索、层级内容 |
-| **自由布局** | 自定义位置、灵活连接 | 复杂网络、非层级内容、自定义排列 |
+| Mode | Structure | Best For |
+|------|-----------|----------|
+| **MindMap** | Radial hierarchy from center | Brainstorming, topic exploration, hierarchical content |
+| **Freeform** | Custom positioning, flexible connections | Complex networks, non-hierarchical content, custom arrangements |
 
-**核心特性：**
-- 根据内容长度智能调整节点大小
-- 自动创建带标签的关系连线
-- 颜色编码节点（6 种预设颜色 + 自定义 hex）
-- 合理的间距算法，防止节点重叠
-- 支持节点分组，增强视觉组织
+**Key Features:**
+- Smart node sizing based on content length
+- Automatic edge creation with labeled relationships
+- Color-coded nodes (6 preset colors + custom hex)
+- Proper spacing algorithms to prevent overlap
+- Group nodes for visual organization
 
-**触发词：** `Canvas`、`思维导图`、`可视化图表`、`mind map`
+**Trigger words:** `Canvas`, `mind map`, `visual diagram`, `mind map canvas`
 
-## 安装
+## Installation
 
-### 前置要求
+### Prerequisites
 
-- 已安装 [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code)
-- [Obsidian](https://obsidian.md/) 及相关插件：
-  - [Excalidraw 插件](https://github.com/zsviczian/obsidian-excalidraw-plugin)（用于 Excalidraw skill）
+- [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) installed
+- [Obsidian](https://obsidian.md/) with relevant plugins:
+  - [Excalidraw plugin](https://github.com/zsviczian/obsidian-excalidraw-plugin) (for Excalidraw skill)
 
-### 方式 A：Plugin Marketplace（推荐）
+### Option A: Plugin Marketplace (Recommended)
 
-通过 Claude Code 的插件系统安装：
+Install via Claude Code's plugin system:
 
 ```
 /plugin marketplace add axtonliu/axton-obsidian-visual-skills
 /plugin install obsidian-visual-skills
 ```
 
-安装后重启 Claude Code 即可加载 skills。
+Then restart Claude Code to load the skills.
 
-### 方式 B：手动安装
+### Option B: Manual Installation
 
-将 skill 文件夹复制到 Claude Code 的 skills 目录：
+Copy the skill folders to your Claude Code skills directory:
 
 ```bash
-# 克隆仓库
+# Clone the repository
 git clone https://github.com/axtonliu/axton-obsidian-visual-skills.git
 
-# 复制 skills 到 Claude Code 目录
+# Copy skills to Claude Code directory
 cp -r axton-obsidian-visual-skills/excalidraw-diagram ~/.claude/skills/
 cp -r axton-obsidian-visual-skills/mermaid-visualizer ~/.claude/skills/
 cp -r axton-obsidian-visual-skills/obsidian-canvas-creator ~/.claude/skills/
 ```
 
-也可以按需只复制单个 skill。
+Or copy individual skills as needed.
 
-## 使用方法
+## Usage
 
-安装后，当你请求可视化内容时，Claude Code 会自动使用这些 skills：
+Once installed, Claude Code will automatically use these skills when you ask for visualizations:
 
 ```
 # Excalidraw
-"创建一个展示 CI/CD 流程的 Excalidraw 流程图"
-"画一个关于机器学习概念的思维导图"
-"用 Excalidraw 画一个商业模式关系图"
+"Create an Excalidraw flowchart showing the CI/CD pipeline"
+"Draw a mind map about machine learning concepts"
+"Use Excalidraw to draw a business model relationship diagram"
 
 # Mermaid
-"用 Mermaid 图表可视化这个流程"
-"为 API 认证流程创建时序图"
-"把这个工作流程转成 Mermaid 图表"
+"Visualize this process as a Mermaid diagram"
+"Create a sequence diagram for the API authentication flow"
+"Convert this workflow into a Mermaid diagram"
 
 # Canvas
-"把这篇文章转换成 Obsidian Canvas"
-"创建一个项目规划的思维导图 Canvas"
-"把这篇文章整理成 Canvas 思维导图"
+"Turn this article into an Obsidian Canvas"
+"Create a mind map canvas for project planning"
+"Organize this article into a Canvas mind map"
 ```
 
-## 文件结构
+## File Structure
 
 ```
 axton-obsidian-visual-skills/
 ├── excalidraw-diagram/
-│   ├── SKILL.md              # 主 skill 定义
-│   ├── assets/               # 示例输出
+│   ├── SKILL.md              # Main skill definition
+│   ├── assets/               # Example outputs
 │   └── references/           # Excalidraw JSON schema
 ├── mermaid-visualizer/
 │   ├── SKILL.md
-│   └── references/           # 语法规则与错误预防
+│   └── references/           # Syntax rules & error prevention
 ├── obsidian-canvas-creator/
 │   ├── SKILL.md
-│   ├── assets/               # 模板 canvas 文件
-│   └── references/           # Canvas 规范与布局算法
+│   ├── assets/               # Template canvas files
+│   └── references/           # Canvas spec & layout algorithms
 ├── README.md
 ├── README_CN.md
 └── LICENSE
 ```
 
-## 常见问题
+## Troubleshooting
 
-### Excalidraw：中文不是手写体
+### Excalidraw: Chinese text not showing as handwriting font
 
-Skill 已正确设置 `fontFamily: 5`（Excalifont）。但 **Excalifont 只覆盖拉丁字符** —— CJK 手写字体（小赖字体）是从网络动态加载的。
+The skill correctly sets `fontFamily: 5` (Excalifont). However, **Excalifont only covers Latin characters** — CJK handwriting font (Xiaolai) is loaded dynamically from the network.
 
-**为什么我这边能显示手写体：** 联网状态下字体从 Excalidraw.com 加载成功。
+**Why it works for me:** My Chinese text displays in handwriting style because the font loads successfully from Excalidraw.com.
 
-**为什么你那边可能不行：**
-- 离线模式或网络不稳定
-- 无法访问 Excalidraw.com（防火墙等）
+**Why it might not work for you:**
+- Offline mode or unstable network connection
+- Cannot access Excalidraw.com (firewall, etc.)
 
-**解决方案：**
+**Solutions:**
 
-**方案 A（联网场景）：** 确保网络能正常访问 Excalidraw.com
+**Option A (Online):** Ensure your network can access Excalidraw.com
 
-**方案 B（离线场景）：**
-1. 从 [Excalidraw GitHub](https://github.com/excalidraw/excalidraw/tree/master/public/fonts) 下载 CJK 字体文件
-2. 放到 Vault 里的 `Excalidraw/CJK Fonts` 文件夹
-3. 在 Excalidraw 插件设置里启用 "Load Chinese fonts from file at startup"
-4. 重启 Obsidian（设置需要重启才生效）
+**Option B (Offline):**
+1. Download CJK font files from [Excalidraw GitHub](https://github.com/excalidraw/excalidraw/tree/master/public/fonts)
+2. Place them in your vault's `Excalidraw/CJK Fonts` folder
+3. In Excalidraw plugin settings, enable "Load Chinese fonts from file at startup"
+4. Restart Obsidian (required for settings to take effect)
 
-## 贡献
+## Contributing
 
-欢迎贡献（低维护项目）：
+Contributions welcome (low-maintenance project):
 
-- 可复现的 Bug 报告（输入 + 输出 + 步骤 + 环境）
-- 文档改进
-- 小型 PR（修复/文档）
+- Reproducible bug reports (input + output + steps + environment)
+- Documentation improvements
+- Small PRs (fixes/docs)
 
-> **注意：** 由于维护精力有限，功能请求可能不会被处理。
+> **Note:** Feature requests may not be acted on due to limited maintenance capacity.
 
-## 致谢
+## Acknowledgments
 
-本项目基于以下优秀的开源工具和规范构建：
+This project builds upon these excellent open-source tools and specifications:
 
-- [Excalidraw](https://excalidraw.com/) - 手绘风格白板
-- [Mermaid](https://mermaid.js.org/) - 图表生成工具
-- [JSON Canvas](https://jsoncanvas.org/) - 开放的无限画布文件格式（MIT 许可证）
-- [Obsidian](https://obsidian.md/) - 知识库应用
+- [Excalidraw](https://excalidraw.com/) - Hand-drawn style whiteboard
+- [Mermaid](https://mermaid.js.org/) - Diagram and chart generation
+- [JSON Canvas](https://jsoncanvas.org/) - Open file format for infinite canvas (MIT License)
+- [Obsidian](https://obsidian.md/) - Knowledge base application
 
-## 许可证
+## License
 
-MIT 许可证 - 详见 [LICENSE](LICENSE)。
-
----
-
-## 作者
-
-**Axton Liu** - AI 教育者与创作者
-
-- 官网：[axtonliu.ai](https://www.axtonliu.ai)
-- YouTube：[@AxtonLiu](https://youtube.com/@AxtonLiu)
-- Twitter/X：[@axtonliu](https://twitter.com/axtonliu)
-
-### 了解更多
-
-- [MAPS™ AI 系统化训练营](https://www.axtonliu.ai/aiagent) - 系统化 AI Agent 技能训练
-- [Claude Skills 万字长文：从指令到资产的系统化构建指南](https://www.axtonliu.ai/newsletters/ai-2/posts/claude-agent-skills-maps-framework) - 完整方法论
-- [AI 精英周刊](https://www.axtonliu.ai/newsletters/ai-2) - 每周 AI 洞察
-- [免费 AI 课程](https://www.axtonliu.ai/axton-free-course) - 开启你的 AI 之旅
+MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-© AXTONLIU™ & AI 精英学院™ 版权所有
+## Author
+
+**Axton Liu** - AI Educator & Creator
+
+- Website: [axtonliu.ai](https://www.axtonliu.ai)
+- YouTube: [@AxtonLiu](https://youtube.com/@AxtonLiu)
+- Twitter/X: [@axtonliu](https://twitter.com/axtonliu)
+
+### Learn More
+
+- [MAPS™ AI Agent Course](https://www.axtonliu.ai/aiagent) - Systematic AI agent skills training
+- [Claude Skills: A Systematic Guide](https://www.axtonliu.ai/newsletters/ai-2/posts/claude-agent-skills-maps-framework) - Complete methodology
+- [AI Elite Weekly Newsletter](https://www.axtonliu.ai/newsletters/ai-2) - Weekly AI insights
+- [Free AI Course](https://www.axtonliu.ai/axton-free-course) - Get started with AI
+
+---
+
+© AXTONLIU™ & AI Elite Academy™ All Rights Reserved
+

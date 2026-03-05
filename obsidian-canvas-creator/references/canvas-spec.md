@@ -379,7 +379,7 @@ When canvas contains Chinese text, apply these transformations:
 **Example:**
 ```json
 {
-  "text": "『核心概念』包含:「子概念A」和「子概念B」"
+  "text": "『Core Concept』includes:「Sub-concept A」and「Sub-concept B」"
 }
 ```
 

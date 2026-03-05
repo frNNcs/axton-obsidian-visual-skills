@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: Experimental](https://img.shields.io/badge/Status-Experimental-orange.svg)](#status)
 
-**[中文文档](README_CN.md)**
+**[Translated Documentation](README_CN.md)**
 
 Visual Skills Pack for Obsidian: generate Canvas, Excalidraw, and Mermaid diagrams from text with Claude Code.
 
@@ -78,9 +78,9 @@ Generate hand-drawn style diagrams with three output modes:
 - Animation support with customizable element order
 
 **Trigger words:**
-- Obsidian: `Excalidraw`, `diagram`, `flowchart`, `mind map`, `画图`, `流程图`
-- Standard: `标准Excalidraw`, `standard excalidraw`
-- Animated: `Excalidraw动画`, `动画图`, `animate`
+- Obsidian: `Excalidraw`, `diagram`, `flowchart`, `mind map`, `draw diagram`, `process flowchart`
+- Standard: `standard Excalidraw`, `standard excalidraw`
+- Animated: `Excalidraw animation`, `animated diagram`, `animate`
 
 ### 2. Mermaid Visualizer
 
@@ -100,7 +100,7 @@ Transform text content into professional Mermaid diagrams optimized for presenta
 - Professional color schemes with semantic meaning
 - Compatible with Obsidian, GitHub, and other Mermaid renderers
 
-**Trigger words:** `Mermaid`, `visualize`, `flowchart`, `sequence diagram`, `可视化`
+**Trigger words:** `Mermaid`, `visualize`, `flowchart`, `sequence diagram`, `visualization`
 
 ### 3. Obsidian Canvas Creator
 
@@ -120,7 +120,7 @@ Create interactive Obsidian Canvas (`.canvas`) files with MindMap or freeform la
 - Proper spacing algorithms to prevent overlap
 - Group nodes for visual organization
 
-**Trigger words:** `Canvas`, `mind map`, `visual diagram`, `思维导图`
+**Trigger words:** `Canvas`, `mind map`, `visual diagram`, `mind map canvas`
 
 ## Installation
 
@@ -165,17 +165,17 @@ Once installed, Claude Code will automatically use these skills when you ask for
 # Excalidraw
 "Create an Excalidraw flowchart showing the CI/CD pipeline"
 "Draw a mind map about machine learning concepts"
-"用 Excalidraw 画一个商业模式关系图"
+"Use Excalidraw to draw a business model relationship diagram"
 
 # Mermaid
 "Visualize this process as a Mermaid diagram"
 "Create a sequence diagram for the API authentication flow"
-"把这个工作流程转成 Mermaid 图表"
+"Convert this workflow into a Mermaid diagram"
 
 # Canvas
 "Turn this article into an Obsidian Canvas"
 "Create a mind map canvas for project planning"
-"把这篇文章整理成 Canvas 思维导图"
+"Organize this article into a Canvas mind map"
 ```
 
 ## File Structure
@@ -262,4 +262,4 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-© AXTONLIU™ & AI 精英学院™ 版权所有
+© AXTONLIU™ & AI Elite Academy™ All Rights Reserved
